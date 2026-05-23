@@ -29,6 +29,7 @@ This repository is meant to become the stable, community-facing hub:
 - [Research pipeline](docs/wiki/Research-Pipeline.md)
 - [Current research snapshot](docs/research/intel-xpu-b70-snapshot-2026-05-23.md)
 - [GitHub Wiki and Discussions setup](docs/guides/github-wiki-and-discussions-setup.md)
+- [Lab to deployment roadmap](docs/roadmap/lab-to-deployment-roadmap.md)
 
 ## Current Working Model
 
