@@ -98,9 +98,14 @@ Ubuntu 24 with 4x Intel Arc Pro B70s:
 
 - OpenAI-compatible vLLM server on `0.0.0.0:8000`
 - default served context: `24576` tokens
-- short decode observed through the API: about `83.8 output tok/s`
+- short warm decode observed through the API: about `83.8 output tok/s`
+- prompt/prefill observed through the API: about `1.7k-1.8k prompt tok/s`
 - near-full request tested: `24400` prompt tokens plus `64` generated tokens
+- current host note: PCIe4 x16 allreduce bandwidth measured `13.79 GB/s`;
+  an older faster PCIe5-class reference measured `27.88 GB/s`, almost exactly
+  2x, which plausibly explains much of the `83` versus `89-93` decode gap
 - recipe: https://github.com/steveseguin/b70-optimization-lab/tree/main/repro/minimax-m27-b70-110tps-ubuntu24-20260523
+- detailed PCIe/prefill note: https://github.com/steveseguin/b70-optimization-lab/blob/main/notes/2026-05-23-current-host-pcie4-prefill-check.md
 
 Treat this as a working starting point, not the final speed ceiling.
 
