@@ -38,6 +38,7 @@ This repo is meant to be the stable hub:
 | Try containers | [Docker and Containers](docs/wiki/Docker-and-Containers.md) |
 | Understand 2x B70 use cases | [Two B70 Use Cases](docs/wiki/Two-B70-Use-Cases.md) |
 | See research status | [Current Research Snapshot](docs/research/intel-xpu-b70-snapshot-2026-05-23.md) |
+| Deploy MiniMax on 4x B70 | [Ubuntu 24 recipe](https://github.com/steveseguin/b70-optimization-lab/tree/main/repro/minimax-m27-b70-110tps-ubuntu24-20260523) |
 
 ## Good First Post
 
@@ -89,6 +90,19 @@ Near-term community priorities:
 - collect comparable vLLM, llama.cpp, OpenVINO, and PyTorch XPU results
 - track driver/runtime mismatches and fixes
 - promote stable recipes from the fast-moving [B70 optimization lab](https://github.com/steveseguin/b70-optimization-lab)
+
+## Current Working Recipe
+
+The most complete current community reference is MiniMax M2.7 INT4 AutoRound on
+Ubuntu 24 with 4x Intel Arc Pro B70s:
+
+- OpenAI-compatible vLLM server on `0.0.0.0:8000`
+- default served context: `24576` tokens
+- short decode observed through the API: about `83.8 output tok/s`
+- near-full request tested: `24400` prompt tokens plus `64` generated tokens
+- recipe: https://github.com/steveseguin/b70-optimization-lab/tree/main/repro/minimax-m27-b70-110tps-ubuntu24-20260523
+
+Treat this as a working starting point, not the final speed ceiling.
 
 ## Repo Map
 
