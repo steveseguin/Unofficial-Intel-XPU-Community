@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/steveseguin/Unofficial-Intel-XPU-Community/schemas/benchmark-result.schema.json",
+  "title": "Intel XPU Benchmark Result",
+  "type": "object",
+  "required": [
+    "date",
+    "status",
+    "hardware",
+    "software",
+    "model",
+    "workload",
+    "command",
+    "results"
+  ],
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["stable", "draft", "experimental", "negative", "suspect", "rumor"]
+    },
+    "hardware": {
+      "type": "object",
+      "required": ["gpus"],
+      "properties": {
+        "gpus": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["model", "count"],
+            "properties": {
+              "model": { "type": "string" },
+              "count": { "type": "integer", "minimum": 1 },
+              "memory_gb_each": { "type": "number" }
+            }
+          }
+        },
+        "cpu": { "type": "string" },
+        "motherboard": { "type": "string" },
+        "ram_gb": { "type": "number" },
+        "pcie_notes": { "type": "string" }
+      }
+    },
+    "software": {
+      "type": "object",
+      "properties": {
+        "os": { "type": "string" },
+        "kernel": { "type": "string" },
+        "driver": { "type": "string" },
+        "xpu_smi": { "type": "string" },
+        "oneapi": { "type": "string" },
+        "framework": { "type": "string" },
+        "framework_commit": { "type": "string" },
+        "python": { "type": "string" }
+      }
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "source": { "type": "string" },
+        "quantization": { "type": "string" },
+        "context_length": { "type": "integer" }
+      }
+    },
+    "workload": {
+      "type": "object",
+      "properties": {
+        "prompt_tokens": { "type": "integer" },
+        "output_tokens": { "type": "integer" },
+        "batch_size": { "type": "integer" },
+        "concurrency": { "type": "integer" }
+      }
+    },
+    "command": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "results": {
+      "type": "object",
+      "properties": {
+        "output_tokens_per_second": { "type": "number" },
+        "total_tokens_per_second": { "type": "number" },
+        "latency_ms": { "type": "number" },
+        "raw_output": { "type": "string" }
+      }
+    },
+    "validation": {
+      "type": "string"
+    },
+    "links": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" }
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

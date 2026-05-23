@@ -1,0 +1,70 @@
+title: "[Benchmark] "
+labels: ["benchmark"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Benchmarks should be reproducible. Include exact versions and commands.
+  - type: input
+    id: date
+    attributes:
+      label: Date
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+  - type: input
+    id: hardware
+    attributes:
+      label: Hardware
+      placeholder: "GPU count/SKU, CPU, RAM, motherboard"
+    validations:
+      required: true
+  - type: textarea
+    id: software
+    attributes:
+      label: Software versions
+      description: "OS, kernel, driver, xpu-smi, oneAPI, framework, commit/package versions"
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model and quantization
+      placeholder: "Example: Qwen..., FP8 / Q4_0 / INT4 W4A16"
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and environment
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Result
+      description: "Throughput, latency, context length, prompt/output tokens, batch/concurrency"
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation or quality check
+      placeholder: "How did you verify correctness or output quality?"
+    validations:
+      required: false
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options:
+        - stable
+        - draft
+        - experimental
+        - negative
+        - suspect
+    validations:
+      required: true

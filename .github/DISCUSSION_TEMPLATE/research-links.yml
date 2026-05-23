@@ -1,0 +1,43 @@
+title: "[Research] "
+labels: ["research"]
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Source link
+      placeholder: "Official docs, release notes, issue, PR, forum post, article"
+    validations:
+      required: true
+  - type: dropdown
+    id: confidence
+    attributes:
+      label: Confidence
+      options:
+        - official
+        - tested locally
+        - upstream issue or PR
+        - community report
+        - rumor
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: "What changed or what did you learn?"
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact for Intel XPU users
+      placeholder: "Drivers, runtime support, performance, compatibility, buying decisions"
+    validations:
+      required: false
+  - type: input
+    id: checked
+    attributes:
+      label: Date checked
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true

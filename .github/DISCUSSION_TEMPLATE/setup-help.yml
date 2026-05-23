@@ -1,0 +1,57 @@
+title: "[Setup Help] "
+labels: ["setup", "help wanted"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Include enough detail for another person to find the failing layer.
+  - type: input
+    id: gpu
+    attributes:
+      label: GPU model and count
+      placeholder: "Example: 2x Intel Arc Pro B70"
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: System
+      placeholder: "CPU, motherboard, RAM, PSU, risers if any"
+    validations:
+      required: false
+  - type: input
+    id: os
+    attributes:
+      label: OS and kernel/build
+      placeholder: "Example: Ubuntu 24.04, kernel 6.x / Windows 11 24H2"
+    validations:
+      required: true
+  - type: textarea
+    id: versions
+    attributes:
+      label: Driver and runtime versions
+      description: "xpu-smi, Level Zero, OpenCL, oneAPI, PyTorch XPU, OpenVINO, framework versions"
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: commands
+    attributes:
+      label: Commands run
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output or error
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to run?
+      placeholder: "Model, framework, deployment target, benchmark goal"
+    validations:
+      required: true
