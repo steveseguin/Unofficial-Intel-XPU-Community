@@ -1,78 +1,108 @@
 # Unofficial Intel XPU Community
 
-Community notes, setup guides, benchmarks, patches, and discussion space for Intel Arc Pro B-series GPUs, Intel XPU runtimes, oneAPI, OpenVINO, PyTorch XPU, SYCL, Level Zero, vLLM, llama.cpp, and related tools.
+Intel GPU notes for people trying to run local AI without losing a weekend to driver/runtime weirdness.
 
-This is an unofficial community project. It is not owned by Intel. Treat everything here as community research unless it links to official vendor documentation.
-
-## Why This Exists
-
-Intel Arc Pro B-series cards, especially the Arc Pro B70, are interesting for local AI because they combine large VRAM, modern media engines, and Intel's XPU software stack. The public information is scattered across Intel docs, driver release notes, GitHub issues, benchmark posts, X threads, and local experiments.
-
-This repository is meant to become the stable, community-facing hub:
-
-- reproducible setup guides for Windows and Linux
-- Docker and container notes that other people can actually run
-- benchmark templates and results that can be compared
-- patch notes for vLLM, llama.cpp, OpenVINO, oneAPI, and SYCL work
-- troubleshooting guides for drivers, PCIe topology, XPU visibility, and runtime mismatches
-- Discussion categories for setup help, benchmarks, guides, patches, and research leads
+This is an unofficial community project. It is not owned by Intel.
 
 ## Start Here
 
-- [Wiki home draft](docs/wiki/Home.md)
-- [Getting started](docs/wiki/Getting-Started.md)
-- [Two B70 use cases](docs/wiki/Two-B70-Use-Cases.md)
-- [Drivers and runtimes](docs/wiki/Drivers-and-Runtimes.md)
-- [Diagnostics](docs/wiki/Diagnostics.md)
-- [Benchmarks and results](docs/wiki/Benchmarks-and-Results.md)
-- [Docker and containers](docs/wiki/Docker-and-Containers.md)
-- [Research pipeline](docs/wiki/Research-Pipeline.md)
-- [Current research snapshot](docs/research/intel-xpu-b70-snapshot-2026-05-23.md)
-- [GitHub Wiki and Discussions setup](docs/guides/github-wiki-and-discussions-setup.md)
-- [Lab to deployment roadmap](docs/roadmap/lab-to-deployment-roadmap.md)
+- Ask for help: https://github.com/steveseguin/Unofficial-Intel-XPU-Community/discussions
+- Read the wiki: https://github.com/steveseguin/Unofficial-Intel-XPU-Community/wiki
+- Share a benchmark: [template](templates/benchmark-result.md)
+- Run a system snapshot: [Linux](scripts/collect_xpu_snapshot.sh) / [Windows](scripts/collect_xpu_snapshot.ps1)
+- Research lab repo: https://github.com/steveseguin/b70-optimization-lab
 
-## Current Working Model
+## What This Community Is For
 
-Use this repo for stable community material. Use [`steveseguin/b70-optimization-lab`](https://github.com/steveseguin/b70-optimization-lab) as the fast-moving research feed.
+Intel Arc and XPU local AI is promising, but setup is still scattered across drivers, oneAPI, OpenVINO, PyTorch XPU, Level Zero, SYCL, vLLM, llama.cpp, Docker, and random forum posts.
 
-The intended flow is:
+This repo is meant to be the stable hub:
 
-1. Experiment in the lab repo.
-2. Promote a result here only when it has enough detail for another person to reproduce.
-3. Capture the hardware, driver, runtime, command line, model, and validation evidence.
-4. Mark anything speculative, negative, or unsafe as such.
+- setup guides for Linux and Windows
+- Docker notes people can actually run
+- benchmark templates and comparable results
+- patch notes for vLLM, llama.cpp, OpenVINO, oneAPI, and SYCL
+- troubleshooting for drivers, PCIe topology, XPU visibility, and runtime mismatches
+- discussion categories for setup help, benchmarks, guides, patches, build photos, and research leads
 
-## Good First Contributions
+## Quick Links
 
-- Post your B70 or other Intel XPU system in Discussions using the setup form.
-- Run the snapshot script in [`scripts/`](scripts/) and attach the output to a setup discussion.
-- Convert a lab note into a short, reproducible guide.
-- Add a benchmark result with the template in [`templates/benchmark-result.md`](templates/benchmark-result.md).
-- Link useful upstream issues, PRs, release notes, and forum threads.
+| I want to... | Go here |
+| --- | --- |
+| Ask a setup question | [Discussions](https://github.com/steveseguin/Unofficial-Intel-XPU-Community/discussions) |
+| Read community notes | [Wiki](https://github.com/steveseguin/Unofficial-Intel-XPU-Community/wiki) |
+| Get started | [Getting Started](docs/wiki/Getting-Started.md) |
+| Check drivers/runtimes | [Drivers and Runtimes](docs/wiki/Drivers-and-Runtimes.md) |
+| Diagnose XPU visibility | [Diagnostics](docs/wiki/Diagnostics.md) |
+| Share benchmark results | [Benchmarks and Results](docs/wiki/Benchmarks-and-Results.md) |
+| Try containers | [Docker and Containers](docs/wiki/Docker-and-Containers.md) |
+| Understand 2x B70 use cases | [Two B70 Use Cases](docs/wiki/Two-B70-Use-Cases.md) |
+| See research status | [Current Research Snapshot](docs/research/intel-xpu-b70-snapshot-2026-05-23.md) |
 
-## For Two B70 Owners
+## Good First Post
 
-The best practical use case for two B70s depends on software support:
+If you need help, open a Discussion and include:
 
-- run two independent 32 GB GPU workloads when you want reliability and simple scheduling
-- run tensor parallel inference when the framework supports XPU communication cleanly
-- split services, for example one GPU for an LLM and the other for embeddings, vision, transcription, video, or test builds
-- benchmark scaling, driver versions, oneCCL settings, and model layouts
+- GPU model and count
+- Windows or Linux version
+- what you are trying to run
+- what guide or command you followed
+- what failed
+- logs or screenshots if you have them
 
-Two cards do not automatically behave like one 64 GB GPU. Treat multi-GPU memory as software-managed unless a specific framework path proves otherwise.
+If you are on Linux, attach output from:
 
-## Can An AI Configure This From The CLI?
+```bash
+bash scripts/collect_xpu_snapshot.sh
+```
 
-An AI agent can help a lot from the CLI: inventory hardware, install packages, generate Docker files, run diagnostics, collect logs, write systemd units, benchmark repeatably, and convert the results into documentation.
+If you are on Windows PowerShell, attach output from:
 
-Human approval is still needed for physical hardware, BIOS settings, slot layout, power, reboots, kernel changes, package trust, and anything run as root. The safe pattern is: collect a read-only snapshot first, then make one controlled change at a time, then benchmark.
+```powershell
+.\scripts\collect_xpu_snapshot.ps1
+```
 
-## Community Links
+## What Counts As A Useful Benchmark
 
-- Discussions: https://github.com/steveseguin/Unofficial-Intel-XPU-Community/discussions
-- Research lab: https://github.com/steveseguin/b70-optimization-lab
-- Steve on X: https://x.com/xyster
+A useful result says more than "I got 80 tok/s."
 
-## License
+Include:
 
-This repository is currently published under CC0. Contributions should be suitable for public reuse and should not include private tokens, proprietary model weights, private benchmark data, or copied vendor text beyond short quotes and links.
+- model and quantization
+- GPU model/count
+- engine: vLLM, llama.cpp, OpenVINO, PyTorch, etc.
+- prompt length, output length, context length
+- batch size or concurrency
+- output tok/s and total tok/s if available
+- whether quality was checked
+- exact command or linked recipe
+
+Use the [benchmark template](templates/benchmark-result.md).
+
+## Current Focus
+
+Near-term community priorities:
+
+- make B70/B-series setup reproducible
+- document Windows and Linux paths clearly
+- get Docker/container recipes that work outside one private machine
+- collect comparable vLLM, llama.cpp, OpenVINO, and PyTorch XPU results
+- track driver/runtime mismatches and fixes
+- promote stable recipes from the fast-moving [B70 optimization lab](https://github.com/steveseguin/b70-optimization-lab)
+
+## Repo Map
+
+- [COMMUNITY.md](COMMUNITY.md): what belongs here and how to write useful posts
+- [CONTRIBUTING.md](CONTRIBUTING.md): contribution rules
+- [community/](community/): suggested discussion categories and welcome text
+- [docs/wiki/](docs/wiki/): wiki-ready guide drafts
+- [docker/](docker/): container notes
+- [scripts/](scripts/): snapshot/diagnostic helpers
+- [templates/](templates/): benchmark/report templates
+- [schemas/](schemas/): structured result schema
+
+## Important Caveat
+
+This is community research. Some notes will be experimental, incomplete, or wrong for your exact machine. Prefer posts with commands, versions, logs, and reproducible steps.
+
+Do not post API keys, private model files, proprietary data, or copied vendor docs. Link to sources instead.
