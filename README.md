@@ -97,10 +97,13 @@ The most complete current community reference is MiniMax M2.7 INT4 AutoRound on
 Ubuntu 24 with 4x Intel Arc Pro B70s:
 
 - OpenAI-compatible vLLM server on `0.0.0.0:8000`
-- default served context: `24576` tokens
-- short warm decode observed through the API: about `83.8 output tok/s`
+- default served context: `32768` tokens
+- short warm decode observed through the API: about `84.1 output tok/s`
 - prompt/prefill observed through the API: about `1.7k-1.8k prompt tok/s`
-- near-full request tested: `24400` prompt tokens plus `64` generated tokens
+- near-full request tested: `32408` prompt tokens plus `64` generated tokens
+- display/VRAM note: moving display duty to the onboard ASPEED VGA adapter and
+  booting with `xe.disable_display=1` reclaimed enough B70 VRAM to promote the
+  served context from 24k to 32k
 - current host note: PCIe4 x16 allreduce bandwidth measured `13.79 GB/s`;
   an older faster PCIe5-class reference measured `27.88 GB/s`, almost exactly
   2x, which plausibly explains much of the `83` versus `89-93` decode gap
