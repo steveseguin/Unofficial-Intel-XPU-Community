@@ -1,0 +1,46 @@
+title: "[Guide/Patch] "
+labels: ["guide", "patch"]
+body:
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      placeholder: "Drivers, Docker, vLLM, llama.cpp, OpenVINO, PyTorch XPU, oneAPI"
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: "What does this guide or patch accomplish?"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Tested environment
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps or patch commands
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      description: "Smoke tests, benchmark output, pass/fail evidence"
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and limitations
+      placeholder: "What should people not assume?"
+    validations:
+      required: false

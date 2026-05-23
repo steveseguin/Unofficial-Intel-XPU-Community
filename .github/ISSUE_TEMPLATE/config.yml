@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Setup help and community questions
+    url: https://github.com/steveseguin/Unofficial-Intel-XPU-Community/discussions
+    about: Please use Discussions for setup help, benchmark reports, research links, and general questions.
+  - name: Research lab
+    url: https://github.com/steveseguin/b70-optimization-lab
+    about: Fast-moving AI-assisted research logs, benchmark payloads, and experimental patches live here.

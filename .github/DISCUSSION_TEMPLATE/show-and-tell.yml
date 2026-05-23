@@ -1,0 +1,31 @@
+title: "[Show and Tell] "
+labels: ["show and tell"]
+body:
+  - type: input
+    id: build
+    attributes:
+      label: What did you build?
+      placeholder: "Example: dual B70 local inference box"
+    validations:
+      required: true
+  - type: textarea
+    id: hardware
+    attributes:
+      label: Hardware
+      render: text
+    validations:
+      required: false
+  - type: textarea
+    id: software
+    attributes:
+      label: Software stack
+      render: text
+    validations:
+      required: false
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      placeholder: "What works, what is surprising, what are you testing next?"
+    validations:
+      required: true
