@@ -63,6 +63,22 @@ For developer runtimes:
 - Level Zero tooling and topology reporting
 - Intel AI Containers and any XPU-ready container images
 
+## Current Community Baseline
+
+The most complete 4x B70 local-LLM recipe currently linked from this community
+is the MiniMax M2.7 INT4 AutoRound Ubuntu 24 recipe in the B70 optimization lab:
+
+- Repo path: https://github.com/steveseguin/b70-optimization-lab/tree/main/repro/minimax-m27-b70-110tps-ubuntu24-20260523
+- Serving engine: vLLM OpenAI-compatible API
+- Listener: `0.0.0.0:8000`
+- Default served context: `24576` tokens
+- Short decode validation: about `83.8 output tok/s` for prompt 512 / output 1536
+- Long-context validation: prompt 24,400 / output 64 completed without OOM
+
+Context-capacity note: 32K did not fit on the tested stack. vLLM's KV-cache
+check estimated the practical ceiling around 25K tokens, so the recipe uses
+24,576 as the safer default.
+
 ## Two B70 Systems
 
 Two B70s are useful, but only some software paths can treat them as one coordinated inference device.
